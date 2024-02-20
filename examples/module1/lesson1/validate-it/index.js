@@ -1,6 +1,6 @@
 import { isNumber } from '../../helpers/isNumber';
-import { isBigerThen0 } from '../../helpers/isBiggerThen0';
-import { isLowerThen100 } from '../../helpers/isLowerThen100';
+import { isBigerThen } from '../../helpers/isBiggerThen';
+import { isLowerThen } from '../../helpers/isLowerThen';
 
 function validator() {
   const input = document.getElementById('input');
@@ -10,14 +10,11 @@ function validator() {
 
   button.addEventListener('click', () => {
     if (!input.value) return (result.innerHTML = 'type something');
-    if (isNumber(input.value)) {
-      if (isBigerThen0(input.value) && isLowerThen100(input.value)) {
-        result.innerHTML = 'Valid';
-      } else {
-        result.innerHTML = 'Invalid';
-      }
+    const value = Number(input.value);
+    if (isNumber(value) && isBigerThen(value, 0) && isLowerThen(value, 100)) {
+      result.innerHTML = 'Valid';
     } else {
-      result.innerHTML = 'Invalid sign';
+      result.innerHTML = 'Invalid';
     }
   });
 
