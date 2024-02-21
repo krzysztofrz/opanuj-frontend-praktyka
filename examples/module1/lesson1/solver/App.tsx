@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { f1, f2, f3, f4 } from './functions';
+import CalcButton from './CalcButton';
+import NumberInputA from './Inputs/NumberInputA';
+import NumberInputB from './Inputs/NumberInputB';
 
 const App = () => {
   const [numA, setNumA] = useState<number>(0);
@@ -13,44 +16,14 @@ const App = () => {
   return (
     <div>
       <div className="grid grid-cols-2 gap-x-4">
-        <input
-          type="number"
-          className="rounded-md shadow-md p-4"
-          value={numA}
-          onChange={(e) => setNumA(parseFloat(e.target.value))}
-        />
-        <input
-          type="number"
-          className="rounded-md shadow-md p-4"
-          value={numB}
-          onChange={(e) => setNumB(parseFloat(e.target.value))}
-        />
+        <NumberInputA value={numA} onChange={setNumA} />
+        <NumberInputB value={numB} onChange={setNumB} />
       </div>
       <div className="grid grid-cols-4 gap-x-4 my-4">
-        <button
-          className="bg-blue-200 px-2 py-4 text-lg hover:bg-blue-500 hover:text-white rounded-md"
-          onClick={() => doWork(f1)}
-        >
-          +
-        </button>
-        <button
-          className="bg-blue-200 px-2 py-4 text-lg hover:bg-blue-500 hover:text-white rounded-md"
-          onClick={() => doWork(f2)}
-        >
-          -
-        </button>
-        <button
-          className="bg-blue-200 px-2 py-4 text-lg hover:bg-blue-500 hover:text-white rounded-md"
-          onClick={() => doWork(f3)}
-        >
-          *
-        </button>
-        <button
-          className="bg-blue-200 px-2 py-4 text-lg hover:bg-blue-500 hover:text-white rounded-md"
-          onClick={() => doWork(f4)}
-        >
-          /
-        </button>
+        <CalcButton onClick={() => doWork(f1)}>+</CalcButton>
+        <CalcButton onClick={() => doWork(f2)}>-</CalcButton>
+        <CalcButton onClick={() => doWork(f3)}>*</CalcButton>
+        <CalcButton onClick={() => doWork(f4)}>/</CalcButton>
       </div>
       <div>Result: {numC}</div>
     </div>
